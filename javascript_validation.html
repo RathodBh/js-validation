@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JAVASCRIPT VALIDATION</title>
+    <style>
+        body{
+            display: grid;
+            place-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <label>Enter Email: </label><br>
+    <input type="text" name="email" id="email" oninput="myFun()">
+    <p id="op"></p>
+
+    <br><br>
+
+    <label>Enter Phone number:</label><br>
+    <input type="text" name="phone" id="phone" oninput="myPhone()">
+    <p id="op2"></p>
+
+    <br><br>
+
+    <label>Enter Salary:</label><br>
+    <input type="text" name="salary" id="salary" oninput="mySalary()">
+    <p id="op3"></p>
+    <script>
+        function myFun() {
+            var email_expr = /^[A-Za-z0-9._-]{3,}@[A-Za-z]{3,10}[.]{1}[A-Za-z]{2,6}$/;
+            var email = document.getElementById("email").value;
+            var op = document.getElementById("op");
+            if (email_expr.test(email)) {
+                op.innerText = "Email Completed";
+                op.style.color = "green";
+            }
+            else {
+                op.innerText = "Fail";
+                op.style.color = "red";
+            }
+        }
+        function myPhone() {
+            var phone_expr = /^[0-9]{10}$/;
+            var phone = document.getElementById("phone").value;
+            var op2 = document.getElementById("op2");
+            if(isNaN(phone)){
+                op2.innerText = "Phone number contain only numbers";
+                op2.style.color = "red";
+            }
+            else if (phone_expr.test(phone)) {
+                op2.innerText = "Phone Completed";
+                op2.style.color = "green";
+            }
+            else {
+                op2.innerText = "Enter 10 digit";
+                op2.style.color = "red";
+            }
+        }
+        function mySalary() {
+            // salary > 1000
+            var salary_expr = /^[0-9]{4,9}$/;
+            var salary = document.getElementById("salary").value;
+            var op3 = document.getElementById("op3");
+            if (isNaN(salary)) {
+                op3.innerText = "Salary contain only numbers";
+                op3.style.color = "red";
+            }
+            
+            else if (salary <= 1000) {
+                op3.innerText = "Salary must be greater than 1000";
+                op3.style.color = "red";
+            }
+            else if (salary_expr.test(salary)) {
+                op3.innerText = "Salary Completed";
+                op3.style.color = "green";
+            }
+            else {
+                op3.innerText = "Enter valid salary";
+                op3.style.color = "red";
+            }
+        }
+    </script>
+</body>
+
+</html>
